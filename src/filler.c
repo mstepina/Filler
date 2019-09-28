@@ -32,15 +32,13 @@ void get_player (t_map *map)
 			break;
 	}
 	if (ft_strstr(line, "1"))
-	{
 		map.player = 'O';
-		map.enemy = 'X';
-	}
 	else
-	{
 		map.player = 'X';
+	if (map.player == 'O')
+		map.enemy = 'X';
+	else
 		map.enemy = 'O';
-	}
 	ft_strdel(&line);
 }
 
@@ -58,6 +56,16 @@ void	get_field_params(t_map *map)
 	map.coordinate_x = ft_atoi(ft_strrchr(line, ' '));
 	ft_strdel(&line); 
 }
+
+void	filler(t_map *map)
+{
+	int i;
+
+	i = 0;
+	get_map_char(map);
+
+}
+
 
 int main()
 {

@@ -25,6 +25,7 @@ typedef struct	s_map
 	char		enemy;
 	int			coordinate_x;
 	int			coordinate_y;
+	char		**char_field;
 	int			**field;
 	int			piece_x;
 	int			piece_y;
@@ -45,5 +46,8 @@ typedef struct	s_map
 t_map	*initial_map(int fd);
 void	get_player (t_map *map);
 void	get_field_params(t_map *map);
+void	filler(t_map *map);
+void	get_map_char(t_map *map);
+void	int_map_init(t_map *map);
 
 #endif
