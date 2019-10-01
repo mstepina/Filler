@@ -53,4 +53,4 @@ int main(void)
 	printf("%d", atoi(str));
 	return(0);
 }
-/*
+*/

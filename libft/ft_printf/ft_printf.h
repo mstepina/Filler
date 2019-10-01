@@ -6,7 +6,7 @@
 /*   By: mstepina <mstepina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/02 20:52:04 by mstepina          #+#    #+#             */
-/*   Updated: 2019/08/07 16:01:45 by mstepina         ###   ########.fr       */
+/*   Updated: 2019/09/30 15:10:42 by mstepina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <math.h>
-# include "libft.h"
+# include "../libft.h"
 
 # define LLONG_MIN -9223372036854775807
 # define LLONG_MAX 9223372036854775807
@@ -73,5 +73,6 @@ int				u_spec(t_params params, va_list ap);
 int				x_spec(t_params params, va_list ap);
 int				xx_spec(t_params params, va_list ap);
 int				f_spec(t_params params, va_list ap);
+char			*long_itoa(long long n);
 
 #endif

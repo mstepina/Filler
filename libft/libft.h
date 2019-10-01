@@ -33,7 +33,7 @@ void	end_check(int fd, char **line, char **str);
 /*
 ** ft_printf
 */
-int		ft_printf(char *format, ...)
+int		ft_printf(char *format, ...);
 
 typedef struct	s_list
 {

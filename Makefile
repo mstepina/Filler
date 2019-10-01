@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME=./resources/players/dbubnov.filler
+NAME=./resources/players/mstepina.filler
 
 SRCS=src/*.c
 
@@ -21,8 +21,8 @@ FLAGS=-Werror -Wextra -Wall
 all: $(NAME)
 
 $(NAME):
-	@make -C libft/ all
-	gcc -o $(NAME) $(FLAGS) $(SRCS) $(INCLUDES)
+	@make -C libft/ all 
+	gcc -o $(NAME) $(FLAGS) $(SRCS) $(INCLUDES) -g
 
 clean:
 	@make -C libft/ clean
