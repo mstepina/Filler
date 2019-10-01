@@ -31,7 +31,7 @@ typedef struct	s_map
 	int			piece_y;
 	int			current_x;
 	int			current_y;
-	int			round;
+	// int			round;
 	char		**figure_repr;
 	int			heat_number;
 	int			l_sum;
@@ -52,5 +52,7 @@ void	int_map_init(t_map *map);
 void	fill_map_int(t_map *map);
 void	get_piece_params(t_map *map);
 void	get_figure_repr(t_map *map);
+void	heat_map(t_map *map);
+void	check_heat_map(t_map *map, int i, int j);
 
 #endif
