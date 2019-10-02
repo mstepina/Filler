@@ -68,6 +68,7 @@ void	filler(t_map *map)
 	get_piece_params(map);
 	get_figure_repr(map);
 	heat_map(map);
+    put_figure(map);
 
 }
 

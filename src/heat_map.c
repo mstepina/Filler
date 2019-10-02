@@ -43,7 +43,6 @@ void	heat_map(t_map *map)
 
 void	fill_heat_map(t_map *map, int i, int j)
 {
-
 	int col;
 	int val;
 	int start_row;
@@ -68,3 +67,93 @@ void	fill_heat_map(t_map *map, int i, int j)
 		start_row++;
 	}
 }
+
+void	put_figure(t_map *map)
+{
+	int	i;
+	int	j;
+	int current_sum;
+	int lowest_sum;
+
+	i = 0;
+	lowest_sum = 10000;
+	while (i + map->piece_y <= map->coordinate_y)
+	{
+		j = 0;
+		while (j + map->piece_x <= map-> coordinate_x)
+		{
+			if (check_collision(map, i, j))
+			{
+				current_sum = figure_sum(map, i, j);
+				if (current_sum < lowest_sum)
+				{
+					lowest_sum = current_sum;
+					map->res_x = i;
+					map->res_y = j;
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+	ft_printf("%d %d\n", map->res_y, map->res_x);
+}
+
+int		check_collision(t_map *map, int i, int j)
+{
+	int a;
+	int b;
+	int coll;
+
+	coll = 0;
+	a = 0;
+	while (a < map->piece_y)
+	{
+		b = 0;
+		while (b < map->piece_x)
+		{
+			if (map->field[i + a][j + b] == PLAYER && map->figure_repr[a][b] == '*')
+				coll++;
+			if (map->field[i + a][j + b] == ENEMY && map->figure_repr[a][b] == '*')
+				return (0);
+			b++;
+		}
+		if (coll > 1)
+			return (0);
+		a++;
+	}
+	return (coll);
+}
+
+
+int		figure_sum(t_map *map, int i, int j)
+{
+	int	a;
+	int	b;
+	int sum;
+
+	sum = 0;
+	a = 0;
+	while (a < map->piece_y)
+	{
+		b = 0;
+		while (b < map->piece_x)
+		{
+			if (map->figure_repr[a][b] == '*' && map->field[i + a][j + b] != PLAYER)
+				sum += map->field[i + a][j + b];
+			b++;
+		}
+		a++;
+	}
+	return (sum);
+}
+
+
+
+
+
+
+
+
+
+
