@@ -15,8 +15,8 @@
 # define FILLER_H
 # include "../libft/libft.h"
 # define PLAYER -1
-# define ENEMY -5
-# define DOT 0
+# define ENEMY 0
+# define DOT -5
 
 typedef struct	s_map
 {
@@ -31,7 +31,7 @@ typedef struct	s_map
 	int			piece_y;
 	int			current_x;
 	int			current_y;
-	// int			round;
+	int			round;
 	char		**figure_repr;
 	int			heat_number;
 	int			l_sum;
@@ -53,6 +53,6 @@ void	fill_map_int(t_map *map);
 void	get_piece_params(t_map *map);
 void	get_figure_repr(t_map *map);
 void	heat_map(t_map *map);
-void	check_heat_map(t_map *map, int i, int j);
+void	fill_heat_map(t_map *map, int i, int j);
 
 #endif

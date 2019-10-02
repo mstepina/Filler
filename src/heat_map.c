@@ -11,63 +11,60 @@
 /* ************************************************************************** */
 
 #include "filler.h"
+#define MAX(X, Y) ((X) > (Y) ? (X) : (Y))
 
 void	heat_map(t_map *map)
 {
+	
 	int	i;
 	int	j;
+	int val;
+	int max;
 
-	i = 0;
-	map->heat_number = 1;
-	while(i < map->coordinate_y)
+	max = MAX(map->coordinate_x, map->coordinate_y);
+	val = 0;
+	while (val < max)
 	{
-		j = 0;
-		while (j < map->coordinate_x)
+		i = 0;
+		while (i < map->coordinate_y)
 		{
-			if (map->field[i][j] != PLAYER)
+			j = 0;
+			while (j < map-> coordinate_x)
 			{
-				if (map->field[i][j] == 0 && (i - 1) >= 0 && (i + 1) < map->coordinate_y
-				&& (j - 1) >= 0 && (j + 1) < map->coordinate_x) // check the borders of the field
-				check_heat_map(map, i, j);
+				if(map->field[i][j] == val)
+					fill_heat_map(map, i, j);
+				j++;
 			}
-			j++;
-		
+			i++;
 		}
-		i++;
+		val++;
 	}
 }
 
-void	check_heat_map(t_map *map, int i, int j)
+void	fill_heat_map(t_map *map, int i, int j)
 {
-	if (map->field[i][j + 1] == DOT)
-		map->field[i][j + 1] = map->heat_number;
-	if (map->field[i][j - 1] == DOT)
-		map->field[i][j - 1] = map->heat_number;
-	if (map->field[i + 1][j] == DOT)
-		map->field[i + 1][j] = map->heat_number;
-	if (map->field[i - 1][j] == DOT)
-		map->field[i - 1][j] = map->heat_number;
-	if (map->field[i + 1][j + 1] == DOT)
-		map->field[i + 1][j + 1] = map->heat_number;
-	if (map->field[i - 1][j - 1] == DOT)
-		map->field[i - 1][j - 1] = map->heat_number;
-	if (map->field[i + 1][j - 1] == DOT)
-		map->field[i + 1][j - 1] = map->heat_number ;
-	if (map->field[i - 1][j + 1] == DOT)
-		map->field[i - 1][j + 1] = map->heat_number;
 
-	// int row;
-	// int col;
+	int col;
+	int val;
+	int start_row;
+	int end_row;
+	int start_col;
+	int end_col;
 
-	// row = i - 1;
-	// while (row <= i + 1)
-	// {
-	// 	col = j - 1;
-	// 	while (col <= j + 1)
-	// 	{
-	// 		map->field[row][col] = map->heat_number;
-	// 		col++;
-	// 	}
-	// 	row++;
-	// }
+	val = map->field[i][j] + 1;
+	start_row = (i > 0) ? (i - 1) : i;
+	end_row = (i < map->coordinate_y - 1) ? (i + 1) : i;
+	start_col = (j > 0) ? (j - 1) : j;
+	end_col = (j < map->coordinate_x) ? (j + 1) : j;	
+	while (start_row <= end_row)
+	{
+		col = start_col;
+		while (col <= end_col)
+		{
+			if (map->field[start_row][col] == DOT)
+				map->field[start_row][col] = val;
+			col++;
+		}
+		start_row++;
+	}
 }

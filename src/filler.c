@@ -124,7 +124,7 @@ int        main(void)
     	ft_printf("\n");
     	while (j < map->coordinate_x)
     	{
-    		ft_printf("%d", map->field[i][j]);
+    		ft_printf("%3d", map->field[i][j]);
     		j++;
     	}
     	i++;
