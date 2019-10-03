@@ -83,6 +83,7 @@ void	int_map_init(t_map *map)
 
 void get_piece_params(t_map *map)
 {
+
 	char *line;
 
 	while (get_next_line(map->fd, &line))
@@ -93,8 +94,8 @@ void get_piece_params(t_map *map)
 	}
 	map->piece_x = ft_atoi(ft_strrchr(line, ' '));
 	map->piece_y = ft_atoi(ft_strchr(line, ' '));
-	ft_printf("piece_x: %d\n", map->piece_x);
-    ft_printf("piece_y: %d\n", map->piece_y);
+	//ft_printf("piece_x: %d\n", map->piece_x);
+    //ft_printf("piece_y: %d\n", map->piece_y);
 	ft_strdel(&line);
 }
 
@@ -107,16 +108,20 @@ void	get_figure_repr(t_map *map)
 
 	map->figure_repr = (char **)malloc(sizeof(char *) * (map->piece_y + 1));
 	i = 0;
-	while (get_next_line(map->fd, &line) && (i < map->piece_y))
-	{
-		// while (i < map->piece_y)
-		// {
+
+	// while (get_next_line(map->fd, &line) && (i < map->piece_y))
+	//{
+		while (i < map->piece_y)
+		{
+
 			map->figure_repr[i] = ft_strnew(map->piece_x);
-			ft_strcpy(map->figure_repr[i], line);
-			i++;
+
+			get_next_line(map->fd, &line);
+			//ft_printf("%d %d\n", 7, 7);
+			ft_strcpy(map->figure_repr[i++], line);
 			ft_strdel(&line);
-		// }
+		}
 		
-	}
+	//}
 	map->figure_repr[i] = NULL;
 }

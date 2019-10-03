@@ -76,7 +76,7 @@ void	put_figure(t_map *map)
 	int lowest_sum;
 
 	i = 0;
-	lowest_sum = 10000;
+	lowest_sum = 1000;
 	while (i + map->piece_y <= map->coordinate_y)
 	{
 		j = 0;
@@ -88,15 +88,17 @@ void	put_figure(t_map *map)
 				if (current_sum < lowest_sum)
 				{
 					lowest_sum = current_sum;
-					map->res_x = i;
-					map->res_y = j;
+					map->res_x = j;
+					map->res_y = i;
 				}
 			}
 			j++;
 		}
 		i++;
 	}
+	//ft_printf("%d\n lowest sum", lowest_sum);
 	ft_printf("%d %d\n", map->res_y, map->res_x);
+
 }
 
 int		check_collision(t_map *map, int i, int j)
@@ -113,7 +115,12 @@ int		check_collision(t_map *map, int i, int j)
 		while (b < map->piece_x)
 		{
 			if (map->field[i + a][j + b] == PLAYER && map->figure_repr[a][b] == '*')
+			{	
 				coll++;
+
+			}
+			// if (map->field[i + a][j + b] == PLAYER && map->figure_repr[a][b] == '.')
+			// 	return (0);
 			if (map->field[i + a][j + b] == ENEMY && map->figure_repr[a][b] == '*')
 				return (0);
 			b++;

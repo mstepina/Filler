@@ -31,6 +31,23 @@ void	n_check(int fd, char **line, char **str);
 void	end_check(int fd, char **line, char **str);
 
 /*
+** Get_Next_Line structure
+*/
+
+typedef struct		s_array
+{
+	int				fd_counter;
+	char			*left_over_str;
+	struct s_array	*next;
+}					t_array;
+
+t_array				*list_create(const int fd);
+int					ft_read(int fd, char *buff, char **str, char *left_over);
+char				*ft_check(char *str, char *left_over, char *buff, int *t);
+int					get_line(const int fd, char **line, char *left_over);
+int					get_next_line(const int fd, char **line);
+
+/*
 ** ft_printf
 */
 int		ft_printf(char *format, ...);

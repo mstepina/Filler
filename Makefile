@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME=./resources/players/mstepina.filler
+NAME= mstepina.filler
 
 SRCS=src/*.c
 
