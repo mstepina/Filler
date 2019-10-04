@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-void get_map_char(t_map *map)
+void	get_map_char(t_map *map)
 {
 	char	*line;
 	int		i;
@@ -22,21 +22,20 @@ void get_map_char(t_map *map)
 	map->char_field = (char **)malloc(sizeof(char *) * (map->coordinate_y + 1));
 	while (get_next_line(map->fd, &line) > 0)
 	{
-		if (ft_strstr(line, "000")) // beginning of the actual field
+		if (ft_strstr(line, "000"))
 		{
 			while (i < map->coordinate_y)
 			{
 				if (i > 0)
 					get_next_line(map->fd, &line);
-				map->char_field[i] = ft_strnew(map->coordinate_x); // malloc new string
-				start_source = ft_strchr(line, ' ') + 1; // start of the source string to copy to array
-				ft_strcpy(map->char_field[i], start_source);
-				i++;
-				ft_strdel(&line);			
+				map->char_field[i] = ft_strnew(map->coordinate_x);
+				start_source = ft_strchr(line, ' ') + 1;
+				ft_strcpy(map->char_field[i++], start_source);
+				ft_strdel(&line);
 			}
 		}
 		if (i == map->coordinate_y)
-				break;
+			break ;
 	}
 	map->char_field[i] = NULL;
 	int_map_init(map);
@@ -53,13 +52,12 @@ void	fill_map_int(t_map *map)
 		j = 0;
 		while (j < map->coordinate_x)
 		{
-			if(map->char_field[i][j] == '.')
+			if (map->char_field[i][j] == '.')
 				map->field[i][j] = DOT;
-			else if (map->char_field[i][j] == map->player) //|| 
-				// map->char_field[i][j] == (map->player + 32)) // uppercase/ lowercase check
+			else if (map->char_field[i][j] == map->player)
 				map->field[i][j] = PLAYER;
-			else if (map->char_field[i][j] == map->enemy || 
-				map->char_field[i][j] == (map->enemy + 32)) // uppercase/ lowercase check
+			else if (map->char_field[i][j] == map->enemy ||
+				map->char_field[i][j] == (map->enemy + 32))
 				map->field[i][j] = ENEMY;
 			j++;
 		}
@@ -81,25 +79,20 @@ void	int_map_init(t_map *map)
 	fill_map_int(map);
 }
 
-void get_piece_params(t_map *map)
+void	get_piece_params(t_map *map)
 {
-
 	char *line;
 
 	while (get_next_line(map->fd, &line))
 	{
 		if (ft_strstr(line, "Piece"))
-			break;
+			break ;
 		ft_strdel(&line);
 	}
 	map->piece_x = ft_atoi(ft_strrchr(line, ' '));
 	map->piece_y = ft_atoi(ft_strchr(line, ' '));
-	//ft_printf("piece_x: %d\n", map->piece_x);
-    //ft_printf("piece_y: %d\n", map->piece_y);
 	ft_strdel(&line);
 }
-
-
 
 void	get_figure_repr(t_map *map)
 {
@@ -108,20 +101,12 @@ void	get_figure_repr(t_map *map)
 
 	map->figure_repr = (char **)malloc(sizeof(char *) * (map->piece_y + 1));
 	i = 0;
-
-	// while (get_next_line(map->fd, &line) && (i < map->piece_y))
-	//{
-		while (i < map->piece_y)
-		{
-
-			map->figure_repr[i] = ft_strnew(map->piece_x);
-
-			get_next_line(map->fd, &line);
-			//ft_printf("%d %d\n", 7, 7);
-			ft_strcpy(map->figure_repr[i++], line);
-			ft_strdel(&line);
-		}
-		
-	//}
+	while (i < map->piece_y)
+	{
+		map->figure_repr[i] = ft_strnew(map->piece_x);
+		get_next_line(map->fd, &line);
+		ft_strcpy(map->figure_repr[i++], line);
+		ft_strdel(&line);
+	}
 	map->figure_repr[i] = NULL;
 }
