@@ -55,8 +55,8 @@ void	fill_map_int(t_map *map)
 		{
 			if(map->char_field[i][j] == '.')
 				map->field[i][j] = DOT;
-			else if (map->char_field[i][j] == map->player || 
-				map->char_field[i][j] == (map->player + 32)) // uppercase/ lowercase check
+			else if (map->char_field[i][j] == map->player) //|| 
+				// map->char_field[i][j] == (map->player + 32)) // uppercase/ lowercase check
 				map->field[i][j] = PLAYER;
 			else if (map->char_field[i][j] == map->enemy || 
 				map->char_field[i][j] == (map->enemy + 32)) // uppercase/ lowercase check

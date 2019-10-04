@@ -77,10 +77,10 @@ void	put_figure(t_map *map)
 
 	i = 0;
 	lowest_sum = 1000;
-	while (i + map->piece_y <= map->coordinate_y)
+	while (i + map->piece_y < map->coordinate_y)
 	{
 		j = 0;
-		while (j + map->piece_x <= map-> coordinate_x)
+		while (j + map->piece_x < map-> coordinate_x)
 		{
 			if (check_collision(map, i, j))
 			{
@@ -98,7 +98,13 @@ void	put_figure(t_map *map)
 	}
 	//ft_printf("%d\n lowest sum", lowest_sum);
 	ft_printf("%d %d\n", map->res_y, map->res_x);
-
+	// if (lowest_sum == 1000)
+	// {
+	// 	//ft_printf("bad figure");
+	// 	return (1);
+	// }
+	// else
+	// 	return (0);
 }
 
 int		check_collision(t_map *map, int i, int j)
@@ -156,7 +162,99 @@ int		figure_sum(t_map *map, int i, int j)
 }
 
 
+/**********************
+**********************
+**********************/
 
+// void	small_move(t_map *map, int i, int j)
+// {
+// 	int x;
+// 	int y;
+
+// 	y = map->current_y;
+// 	while (i < map->piece_y)
+// 	{
+// 		j = 0;
+// 		x = map->current_x;
+// 		while (j < map->piece_x)
+// 		{
+// 			if (map->figure_repr[i][j] == '*' && map->field[y][x] == ENEMY)
+// 			{
+// 				map->overlay_enemy++;
+// 				break ;
+// 			}
+// 			if (map->figure_repr[i][j] == '*' && map->field[y][x] == PLAYER)
+// 				map->overlay_me++;
+// 			j++;
+// 			x++;
+// 		}
+// 		i++;
+// 		y++;
+// 	}
+// }
+
+
+
+
+// void	put_figure(t_map *map)
+// {
+// 	map->res_x = 0;
+// 	map->res_y = 0;
+// 	map->current_y = 0;
+// 	while (map->current_y <= (map->coordinate_y - map->piece_y))
+// 	{
+// 		map->current_x = 0;
+// 		while (map->current_x <= (map->coordinate_x - map->piece_x))
+// 		{
+// 			map->overlay_me = 0;
+// 			map->overlay_enemy = 0;
+// 			small_move(map, 0, 0);
+// 			if (map->overlay_me == 1 && map->overlay_enemy == 0)
+// 				lowest_summ(map, map->current_x, map->current_y);
+// 			map->current_x++;
+// 		}
+// 		map->current_y++;
+// 	}
+// }
+
+// void	lowest_summ_check(t_map *map, int sum, int x_return, int y_return)
+// {
+// 	if (sum < map->l_sum)
+// 	{
+// 		map->l_sum = sum;
+// 		map->res_x = x_return;
+// 		map->res_y = y_return;
+// 	}
+// }
+
+// void	lowest_summ(t_map *map, int current_x, int current_y)
+// {
+// 	int x;
+// 	int y;
+// 	int	sum;
+// 	int x_return;
+// 	int y_return;
+
+// 	y = 0;
+// 	sum = 0;
+// 	x_return = current_x;
+// 	y_return = current_y;
+// 	while (current_y < (y_return + map->piece_y) && current_y < map->coordinate_y)
+// 	{
+// 		x = 0;
+// 		current_x = x_return;
+// 		while (current_x < (x_return + map->piece_x) & current_x < map->coordinate_x)
+// 		{
+// 			if (map->figure_repr[y][x] == '*')
+// 				sum += map->field[current_y][current_x];
+// 			current_x++;
+// 			x++;
+// 		}
+// 		current_y++;
+// 		y++;
+// 	}
+// 	lowest_summ_check(map, sum, x_return, y_return);
+// }
 
 
 

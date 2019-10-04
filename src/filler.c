@@ -28,16 +28,15 @@ void get_player (t_map *map)
 	char *line;
 
 	while (get_next_line(map->fd, &line))
-
 	{
-		
-		if (ft_strstr(line, "exec p"))
+		if (ft_strstr(line, "mstepina"))
 			break;
 	}
 	if (ft_strstr(line, "1"))
 		map->player = 'O';
 	else
 		map->player = 'X';
+
 	if (map->player == 'O')
 		map->enemy = 'X';
 	else
@@ -63,14 +62,22 @@ void	get_field_params(t_map *map)
 void	filler(t_map *map)
 {
 	int i;
+    // int err;
 
 	i = 0;
+    // err = 0;
 	get_map_char(map);
+	//ft_printf("%d %d\n", 5, 2);
 	get_piece_params(map);
 	get_figure_repr(map);
-	heat_map(map);
+
+    heat_map(map);
+
     put_figure(map);
-    //ft_printf("%d %d\n", 5, 2);
+
+    
+    //ft_printf("%d %d\n", map->res_y, map->res_x);
+    
 
 }
 
@@ -86,7 +93,7 @@ int     main(void)
     while (get_next_line(map->fd, &str) > 0)
         filler(map);
     close(fd);
-    return (0);
+   return (0);
 }
 
 
